@@ -11,9 +11,12 @@ st.set_page_config(page_title="Stock Efficiency Explorer", page_icon="📈", lay
 RIYADH = dt.timezone(dt.timedelta(hours=3))
 
 
-@st.cache_data(ttl=3600, show_spinner=False)
+REFRESH_MINUTES = 15
+
+
+@st.cache_data(ttl=REFRESH_MINUTES * 60, show_spinner=False)
 def get_data():
-    """Downloads fresh prices from Yahoo Finance. Cached for 1 hour so the page stays fast."""
+    """Downloads fresh prices from Yahoo Finance. Cached for 15 minutes so the page stays fast."""
     metrics, failed = core.load_market_data()
     stamp = dt.datetime.now(RIYADH).strftime("%d %b %Y, %H:%M")
     return metrics, failed, stamp
@@ -22,7 +25,7 @@ def get_data():
 st.title("📈 Stock Efficiency Explorer")
 st.caption(
     "Ranks stocks by how much growth they gave for the risk taken, over the last 12 months. "
-    "Prices are downloaded from Yahoo Finance when the page loads and refreshed every hour. "
+    f"Prices are downloaded from Yahoo Finance when the page loads and refreshed every {REFRESH_MINUTES} minutes. "
     "Student project, not investment advice."
 )
 
