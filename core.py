@@ -20,6 +20,10 @@ SAUDI = {
     "4013.SR": "Dr. Sulaiman Al Habib", "4190.SR": "Jarir Marketplace",
 }
 
+# Common names people search for, added next to the official company name
+ALIASES = {"GOOGL": "Google", "GOOG": "Google", "META": "Facebook, Instagram",
+           "2222": "Aramco", "7010": "STC"}
+
 SP500_URL = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 NASDAQ100_URL = "https://en.wikipedia.org/wiki/Nasdaq-100"
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
